@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fareo: compare taxi prices</title>
+<meta name="description" content="Compare Uber, Bolt, FREENOW and black cabs in one search and pick the cheapest ride. Your friend invited you: sign up with their code for 20 bonus comparisons.">
+<!-- Link preview in WhatsApp, iMessage, Messenger, Telegram, etc. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fareo">
+<meta property="og:title" content="Fareo: compare taxi prices">
+<meta property="og:description" content="Compare Uber, Bolt, FREENOW and black cabs in one search. Your friend invited you: get 20 bonus comparisons.">
+<meta property="og:image" content="https://fareo.app/invite/preview.png">
+<meta property="og:url" content="https://fareo.app/invite">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Opens the App Store page from Safari on iPhone (set the real App Store ID). -->
+<meta name="apple-itunes-app" content="app-id=APP_STORE_ID">
+<style>
+  :root { --mauve:#4F46E5; --green:#0F9F72; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; background: var(--mauve); color:#14122E; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; position:relative; overflow-x:hidden; }
+  /* Fareo cloud background: mauve and pink clouds with faint FAREO lettering, like the app */
+  .sky { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .puff { position:absolute; border-radius:50%; filter:blur(2px); }
+  .p1 { left:-80px; top:-90px; width:340px; height:260px; background:#8B7CF6; opacity:.6; }
+  .p2 { right:-90px; top:-40px; width:300px; height:240px; background:#C084FC; opacity:.5; }
+  .p3 { right:-40px; bottom:-110px; width:320px; height:240px; background:#F472B6; opacity:.4; }
+  .p4 { left:-60px; bottom:-90px; width:260px; height:200px; background:#E8603F; opacity:.2; }
+  .p5 { left:20%; top:35%; width:420px; height:180px; background:#fff; opacity:.07; }
+  .words { position:absolute; top:-20px; left:-60px; width:1400px; transform:rotate(-12deg); }
+  .words div { color:rgba(255,255,255,.08); font-size:44px; font-weight:900; letter-spacing:6px; white-space:nowrap; line-height:1.35; }
+  .words div:nth-child(even) { margin-left:-80px; }
+  .card { position:relative; z-index:1; }
+  .card { background:#fff; border-radius:28px; padding:28px 24px; max-width:420px; width:100%; text-align:center; box-shadow:0 20px 50px rgba(20,18,46,.35); }
+  .logo { font-size:44px; font-weight:900; color:var(--mauve); letter-spacing:-1px; margin:0; }
+  .sub { color:#5A5788; margin:6px 0 18px; line-height:1.45; }
+  .tiles { display:flex; justify-content:center; gap:8px; margin-bottom:18px; font-size:30px; }
+  .code { border:2px dashed var(--green); border-radius:16px; padding:14px; margin:6px 0 6px; }
+  .code small { display:block; color:#5A5788; font-weight:700; letter-spacing:.06em; }
+  .code b { font-size:clamp(18px, 7vw, 26px); letter-spacing:2px; color:#14122E; white-space:nowrap; }
+  .gift { color:var(--green); font-weight:800; margin-bottom:18px; }
+  .btn { display:block; border-radius:16px; padding:15px; font-weight:900; text-decoration:none; margin-top:10px; }
+  .ios { background:#14122E; color:#fff; }
+  .android { background:var(--green); color:#fff; }
+  .copy { background:#F1EFFF; color:var(--mauve); border:0; width:100%; font-size:16px; cursor:pointer; }
+  .safe { color:#5A5788; font-size:13px; margin-top:16px; line-height:1.45; }
+</style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><div class="puff p1"></div><div class="puff p2"></div><div class="puff p3"></div><div class="puff p4"></div><div class="puff p5"></div><div class="words"><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div><div>FAREO · FAREO · FAREO · FAREO · FAREO · FAREO</div></div></div>
+  <main class="card">
+    <p class="logo">Fareo</p>
+    <p class="sub">Compare Uber, Bolt, FREENOW and black cabs in one search, and pick the cheapest ride before you book.</p>
+    <div class="tiles" aria-hidden="true">🚕 🚘 ⚡ 🚖</div>
+    <div class="code" id="codeBox" hidden>
+      <small>YOUR FRIEND'S INVITE CODE</small>
+      <b id="code"></b>
+    </div>
+    <p class="gift" id="gift" hidden>🎁 Sign up with this code and get 20 bonus comparisons.</p>
+    <a class="btn android" id="getBtn" href="#">Download Fareo</a>
+    <p class="safe" id="note"></p>
+    <p class="safe">🔒 Fareo only comes from the official App Store and Google Play. This page never asks for passwords or card details.</p>
+  </main>
+<script>
+  // Where each phone downloads Fareo. Until Fareo is in the stores, Android gets the test build and iPhone the TestFlight invite.
+  const LINKS = {
+    ios: "https://apps.apple.com/app/idAPP_STORE_ID",
+    android: "https://play.google.com/store/apps/details?id=com.arti.fareo",
+    androidTest: "https://expo.dev/artifacts/eas/Nc--w1FQ0uhhsvUe0sP2XICixY1u90vdZ3F9JW13wWw.apk",
+    live: false, // set to true once Fareo is published in both stores
+  };
+  const ua = navigator.userAgent;
+  const ios = /iPhone|iPad|iPod/.test(ua), android = /Android/.test(ua);
+  const url = ios ? LINKS.ios : android ? (LINKS.live ? LINKS.android : LINKS.androidTest) : null;
+  const c = (new URLSearchParams(location.search).get("code") || "").toUpperCase();
+  const valid = /^FAREO-[2-9A-HJ-NP-Z]{4}$/.test(c);
+  if (valid) {
+    document.getElementById("code").textContent = c;
+    ["codeBox", "gift"].forEach((id) => document.getElementById(id).hidden = false);
+  }
+  const btn = document.getElementById("getBtn");
+  btn.textContent = ios ? "Download on the App Store" : android ? "Download Fareo for Android" : "Get Fareo";
+  document.getElementById("note").textContent = valid ? "Your friend's code is copied for you. Fareo fills it in when you sign up." : "";
+  // Tapping copies the code (so Fareo can fill it in at sign-up) and goes straight to the download.
+  const go = () => { if (valid && navigator.clipboard) navigator.clipboard.writeText(c).catch(() => {}); if (url) location.href = url; };
+  btn.onclick = (e) => { e.preventDefault(); go(); };
+  // On a phone, go to the download by itself after a moment.
+  if (url) setTimeout(go, 1800);
+</script>
+</body>
+</html>
