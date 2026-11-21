@@ -13,8 +13,6 @@
 <meta property="og:image" content="https://fareo-app.github.io/invite/preview.png">
 <meta property="og:url" content="https://fareo-app.github.io/invite/">
 <meta name="twitter:card" content="summary_large_image">
-<!-- Opens the App Store page from Safari on iPhone (set the real App Store ID). -->
-<meta name="apple-itunes-app" content="app-id=APP_STORE_ID">
 <style>
   :root { --mauve:#4F46E5; --green:#0F9F72; }
   * { box-sizing: border-box; }
@@ -64,14 +62,14 @@
 <script>
   // Where each phone downloads Fareo. Until Fareo is in the stores, Android gets the test build and iPhone the TestFlight invite.
   const LINKS = {
-    ios: "https://apps.apple.com/app/idAPP_STORE_ID",
+    ios: "", // set to the App Store link once Fareo is published (e.g. https://apps.apple.com/app/id123456789)
     android: "https://play.google.com/store/apps/details?id=com.arti.fareo",
     androidTest: "https://expo.dev/artifacts/eas/rSTIyXf4yC5mV_luskOWlwAgPrBzK-RzQ9-buHDOUAM.apk",
     live: false, // set to true once Fareo is published in both stores
   };
   const ua = navigator.userAgent;
   const ios = /iPhone|iPad|iPod/.test(ua), android = /Android/.test(ua);
-  const url = ios ? LINKS.ios : android ? (LINKS.live ? LINKS.android : LINKS.androidTest) : null;
+  const url = ios ? (LINKS.ios || null) : android ? (LINKS.live ? LINKS.android : LINKS.androidTest) : null;
   const c = (new URLSearchParams(location.search).get("code") || "").toUpperCase();
   const valid = /^FAREO-[2-9A-HJ-NP-Z]{4}$/.test(c);
   if (valid) {
@@ -79,8 +77,11 @@
     ["codeBox", "gift"].forEach((id) => document.getElementById(id).hidden = false);
   }
   const btn = document.getElementById("getBtn");
-  btn.textContent = ios ? "Download on the App Store" : android ? "Download Fareo for Android" : "Get Fareo";
-  document.getElementById("note").textContent = valid ? "Your friend's code is copied for you. Fareo fills it in when you sign up." : "";
+  btn.textContent = ios ? (LINKS.ios ? "Download on the App Store" : "Coming soon to the App Store") : android ? "Download Fareo for Android" : "Get Fareo";
+  if (ios && !LINKS.ios) { btn.style.background = "#5A5788"; btn.style.pointerEvents = "none"; }
+  document.getElementById("note").textContent = ios && !LINKS.ios
+    ? "Fareo for iPhone is coming soon to the App Store. Keep your friend's code: you'll use it when you sign up."
+    : valid ? "Your friend's code is copied for you. Fareo fills it in when you sign up." : "";
   // Tapping copies the code (so Fareo can fill it in at sign-up) and goes straight to the download.
   const go = () => { if (valid && navigator.clipboard) navigator.clipboard.writeText(c).catch(() => {}); if (url) location.href = url; };
   btn.onclick = (e) => { e.preventDefault(); go(); };
